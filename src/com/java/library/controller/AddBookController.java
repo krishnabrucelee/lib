@@ -37,7 +37,6 @@ public class AddBookController extends HttpServlet {
 		} else {
 			int bookId = Integer.parseInt(request.getParameter(id));	
 			request.setAttribute("alert", bookServ.updateBook(bookId));
-
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/member/members.jsp");

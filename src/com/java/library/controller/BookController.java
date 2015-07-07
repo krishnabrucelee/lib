@@ -14,7 +14,7 @@ import com.java.library.service.BookService;
 import com.java.library.service.BookServiceImpl;
 
 /**
- * Servlet implementation class MemberController
+ * Servlet implementation class BookController
  */
 @WebServlet( name="BookController", displayName="Book Controller", urlPatterns = {"/book"})
 public class BookController extends HttpServlet {
@@ -32,7 +32,6 @@ public class BookController extends HttpServlet {
         	RequestDispatcher rd = request.getRequestDispatcher(forward);
     		rd.forward(request, response);
         } else {
-
     		request.getRequestDispatcher("index.jsp").include(request, response);
     	}
 	}

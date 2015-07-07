@@ -37,7 +37,6 @@ public class UpdateBookController extends HttpServlet {
         	RequestDispatcher rd = request.getRequestDispatcher(forward);
     		rd.forward(request, response);
         } else {
-
     		request.getRequestDispatcher("index.jsp").include(request, response);
     	}
 	}

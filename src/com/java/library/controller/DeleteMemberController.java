@@ -15,7 +15,7 @@ import com.java.library.service.MemberServiceImpl;
 
 /**
  * @author Assistanz
- * Servlet implementation class MemberController
+ * Servlet implementation class DeleteMemberController
  */
 @WebServlet( name="DeleteMemberController", displayName="Delete Member Controller", urlPatterns = {"/deleteMember"})
 public class DeleteMemberController extends HttpServlet {
@@ -36,7 +36,6 @@ public class DeleteMemberController extends HttpServlet {
         	RequestDispatcher rd = request.getRequestDispatcher(forward);
     		rd.forward(request, response);
         } else {
-
     		request.getRequestDispatcher("index.jsp").include(request, response);
     	}
 	}

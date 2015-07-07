@@ -32,8 +32,7 @@ public class MemberController extends HttpServlet {
         	RequestDispatcher rd = request.getRequestDispatcher(forward);
     		rd.forward(request, response);
         } else {
-
-    		request.getRequestDispatcher("index.jsp").include(request, response);
+        	request.getRequestDispatcher("index.jsp").include(request, response);
     	}
 	}
 

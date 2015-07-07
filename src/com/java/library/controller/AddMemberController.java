@@ -37,7 +37,6 @@ public class AddMemberController extends HttpServlet {
 		} else {
 			int memberId = Integer.parseInt(request.getParameter(id));	
 			request.setAttribute("alert", memberServ.updateMember(memberId));
-
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/member/members.jsp");
@@ -46,7 +45,6 @@ public class AddMemberController extends HttpServlet {
 		rd.forward(request, response);
 		
         } else {
-
 			request.getRequestDispatcher("index.jsp").include(request, response);
 		}
 	}

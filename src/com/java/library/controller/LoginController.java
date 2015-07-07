@@ -28,13 +28,13 @@ public class LoginController extends HttpServlet {
 		/**
 		 * Getting parameter Login form when user submits the form from request to LoginController
 		 */
-		String uname = request.getParameter("username");
-		String pwd = request.getParameter("password");
+		String aname = request.getParameter("username");
+		String apwd = request.getParameter("password");
 
 		/*validation for Admin.*/
-		if (uname.equals("krishna") && pwd.equals("passw0rd")) {
+		if (aname.equals("krishna") && apwd.equals("passw0rd")) {
 			 HttpSession session=request.getSession();  
-		        session.setAttribute("username",uname);  
+		        session.setAttribute("username",aname);  
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/admin/home.jsp");
 			rd.forward(request, response);
 		} else {
