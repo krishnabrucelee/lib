@@ -13,53 +13,57 @@ import javax.servlet.http.HttpSession;
 import com.java.library.service.MemberService;
 import com.java.library.service.MemberServiceImpl;
 
-
 /**
- * @author Assistanz
- *  Servlet implementation class SearchMemberController
+ * @author Assistanz Servlet implementation class SearchMemberController
  */
 
-@WebServlet( name="SearchMemberController", displayName="Search Member Controller", urlPatterns = {"/searchMember"})
+@WebServlet(name = "SearchMemberController", displayName = "Search Member Controller", urlPatterns = {
+        "/searchMember" })
 public class SearchMemberController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String forward = "/WEB-INF/views/search/searchMember.jsp";
-		RequestDispatcher view = request.getRequestDispatcher(forward);
-		view.forward(request, response);
-	}
+    /**
+     * Serial version uid.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		MemberService memberServ = new MemberServiceImpl();
-		String id = request.getParameter("id");
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			if (id == null || id.isEmpty()) {
-				request.setAttribute("alert", id);
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String forward = "/WEB-INF/views/search/searchMember.jsp";
+        RequestDispatcher view = request.getRequestDispatcher(forward);
+        view.forward(request, response);
+    }
 
-			} else {
-				int memberId = Integer.parseInt(request.getParameter("id"));
-				request.setAttribute("member", memberServ.SearchMember(memberId));		
-		
-			}
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/search/searchMemberResult.jsp");
-			view.forward(request, response);
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        MemberService memberServ = new MemberServiceImpl();
+        String id = request.getParameter("id");
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            if (id == null || id.isEmpty()) {
+                request.setAttribute("alert", id);
 
-		} else {
+            } else {
+                int memberId = Integer.parseInt(request.getParameter("id"));
+                request.setAttribute("member", memberServ.searchMember(memberId));
 
-			request.getRequestDispatcher("adminLogin.jsp").include(request, response);
-		}
-	
-	}
-	
+            }
+            RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/search/searchMemberResult.jsp");
+            view.forward(request, response);
+
+        } else {
+
+            request.getRequestDispatcher("adminLogin.jsp").include(request, response);
+        }
+
+    }
+
 }

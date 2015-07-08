@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,10 +11,10 @@
 	<h2>Admin Dashboard!!</h2>
 	<table>
 		<tr>
-			<td><a class="clickMe"	href="member">Member</a></td>
-			<td><a class="clickMe"	href="book">Book</a></td>
-			<td><a class="clickMe"	href="transaction">Transaction</a></td>
-			<td><a class="clickMe"	href="search">Search</a></td>
+			<td><a class="clickMe" href="member">Member</a></td>
+			<td><a class="clickMe" href="book">Book</a></td>
+			<td><a class="clickMe" href="transaction">Transaction</a></td>
+			<td><a class="clickMe" href="search">Search</a></td>
 			<td>
 				<form method="get" action="logout">
 					<button type="submit" value="logout">Logout</button>

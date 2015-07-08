@@ -14,10 +14,10 @@
 <body>
 	<table>
 		<tr>
-			<td><a class="clickMe"	href="member">Member</a></td>
-			<td><a class="clickMe"	href="book">Book</a></td>
-			<td><a class="clickMe"	href="transaction">Transaction</a></td>
-			<td><a class="clickMe"	href="search">Search</a></td>
+			<td><a class="clickMe" href="member">Member</a></td>
+			<td><a class="clickMe" href="book">Book</a></td>
+			<td><a class="clickMe" href="transaction">Transaction</a></td>
+			<td><a class="clickMe" href="search">Search</a></td>
 			<td>
 				<form method="get" action="logout">
 					<button type="submit" value="logout">Logout</button>
@@ -32,23 +32,25 @@
 		<thead>
 			<tr>
 				<th>Member Id</th>
-                <th>First Name</th>              
-                <th>Email</th>
-                <th colspan=2>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${members}" var="member">
-                <tr>
-                    <td><c:out value="${member.id}" /></td>
-                    <td><c:out value="${member.name}" /></td>
-                    <td><c:out value="${user.email}" /></td>
-                    <td><a class="clickMe" href="updateMember<c:out value="${member.id}"/>">Update</a></td>
-                    <td><a class="clickMe" href="deleteMember<c:out value="${member.id}"/>">Delete</a></td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table> 
-    
+				<th>First Name</th>
+				<th>Email</th>
+				<th colspan=2>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${members}" var="member">
+				<tr>
+					<td><c:out value="${member.id}" /></td>
+					<td><c:out value="${member.name}" /></td>
+					<td><c:out value="${user.email}" /></td>
+					<td><a class="clickMe"
+						href="updateMember<c:out value="${member.id}"/>">Update</a></td>
+					<td><a class="clickMe"
+						href="deleteMember<c:out value="${member.id}"/>">Delete</a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
 </body>
 </html>

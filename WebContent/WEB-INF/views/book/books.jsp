@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,10 +15,10 @@
 <body>
 	<table>
 		<tr>
-			<td><a class="clickMe"	href="member">Member</a></td>
-			<td><a class="clickMe"	href="book">Book</a></td>
-			<td><a class="clickMe"	href="transaction">Transaction</a></td>
-			<td><a class="clickMe"	href="search">Search</a></td>
+			<td><a class="clickMe" href="member">Member</a></td>
+			<td><a class="clickMe" href="book">Book</a></td>
+			<td><a class="clickMe" href="transaction">Transaction</a></td>
+			<td><a class="clickMe" href="search">Search</a></td>
 			<td>
 				<form method="get" action="logout">
 					<button type="submit" value="logout">Logout</button>
@@ -26,7 +26,7 @@
 			</td>
 		</tr>
 	</table>
-	
+
 	<table border=1>
 		<thead>
 			<tr>
@@ -44,8 +44,10 @@
 					<td><c:out value="${book.title}" /></td>
 					<td><c:out value="${book.author}" /></td>
 
-					<td><a class="clickMe" href="updateBook<c:out value="${book.id}"/>">Update</a></td>
-					<td><a class="clickMe" href="deleteBook<c:out value="${book.id}"/>">Delete</a></td>
+					<td><a class="clickMe"
+						href="updateBook<c:out value="${book.id}"/>">Update</a></td>
+					<td><a class="clickMe"
+						href="deleteBook<c:out value="${book.id}"/>">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -15,10 +15,10 @@
 <body>
 	<table>
 		<tr>
-			<td><a class="clickMe"	href="member">Member</a></td>
-			<td><a class="clickMe"	href="book">Book</a></td>
-			<td><a class="clickMe"	href="transaction">Transaction</a></td>
-			<td><a class="clickMe"	href="search">Search</a></td>
+			<td><a class="clickMe" href="member">Member</a></td>
+			<td><a class="clickMe" href="book">Book</a></td>
+			<td><a class="clickMe" href="transaction">Transaction</a></td>
+			<td><a class="clickMe" href="search">Search</a></td>
 			<td>
 				<form method="get" action="logout">
 					<button type="submit" value="logout">Logout</button>
@@ -27,10 +27,12 @@
 		</tr>
 	</table>
 	<form method="POST" action='member' name="frmAddUser">
-		Member ID : <input type="text" readonly="readonly" name="id" value="<c:out value="${member.id}" />" /> <br /> 
-		Name : <input type="text" name="firstName" value="<c:out value="${user.firstName}" />" /> <br />  
-		Email : <input type="text" name="email"	value="<c:out value="${user.email}" />" /> <br /> 
-		<input type="submit" value="Submit" />
+		Member ID : <input type="text" readonly="readonly" name="id"
+			value="<c:out value="${member.id}" />" /> <br /> Name : <input
+			type="text" name="firstName"
+			value="<c:out value="${user.firstName}" />" /> <br /> Email : <input
+			type="text" name="email" value="<c:out value="${user.email}" />" />
+		<br /> <input type="submit" value="Submit" />
 	</form>
 </body>
 </html>

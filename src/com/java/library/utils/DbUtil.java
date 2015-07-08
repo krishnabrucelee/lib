@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.java.library.utils;
 
@@ -13,19 +13,30 @@ import java.util.Properties;
 
 /**
  * @author Assistanz
- * Database Utilities 
- *
+ * Database Utilities
  */
-public class DbUtil {
-	private static Connection connection = null;
+public final class DbUtil {
 
-	/*To Get Connection*/ 
+    /**
+     * Added constructor for DbUtil class.
+     */
+    private DbUtil() { }
+
+    /**
+     * A connection (session) with a specific database.
+     */
+    private static Connection connection = null;
+
+    /**
+     * Get connection to database.
+     * @return connection
+     */
     public static Connection getConnection() {
-        if (connection != null)
+        if (connection != null) {
             return connection;
-        else {
+        } else {
             try {
-            	Properties prop = new Properties();
+                Properties prop = new Properties();
                 InputStream inputStream = DbUtil.class.getClassLoader().getResourceAsStream("/db.properties");
                 prop.load(inputStream);
                 String driver = prop.getProperty("driver");

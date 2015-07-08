@@ -1,28 +1,47 @@
 /**
- * 
+ *
  */
 package com.java.library.service;
 
 /**
  * @author Assistanz
- *
  */
 public interface BookService {
 
-	/*Get Book List*/
-	public String getBookList();
+    /**
+     *  Get Book List.
+     *  @return list of books
+     */
+    String getBookList();
 
-	/*Update book from id*/
-	public String updateBook(Integer bookId);
+    /**
+     * Update Book from book id.
+     * @param bookId id
+     * @return updated details.
+     */
+    String updateBook(Integer bookId);
 
-	/*Delete Book from id*/
-	public String deleteBook(Integer bookId);
+    /**
+     * Delete book from book id.
+     * @param bookId id
+     * @return isDeleted 0/1
+     */
+    String deleteBook(Integer bookId);
 
-	/*Add books*/
-	public String addBook(String author, String title, String id);
+    /**
+     * Add Book in database.
+     * @param author book author
+     * @param title book title
+     * @param id book id
+     * @return Add Book Details.
+     */
+    String addBook(String author, String title, String id);
 
-	/*Search book*/
-	public String searchBook(Integer bookId);
-
+    /**
+     * Search for Book.
+     * @param bookId id
+     * @return search book details.
+     */
+    String searchBook(Integer bookId);
 
 }

@@ -14,39 +14,44 @@ import com.java.library.service.BookService;
 import com.java.library.service.BookServiceImpl;
 
 /**
- * @author Assistanz
- * Servlet implementation class AddBookController
+ * @author Assistanz Servlet implementation class AddBookController
  */
-@WebServlet( name="AddBookController", displayName="Add Book Controller", urlPatterns = {"/addBook"})
+@WebServlet(name = "AddBookController", displayName = "Add Book Controller", urlPatterns = { "/addBook" })
 public class AddBookController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-   
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BookService bookServ = new BookServiceImpl();
-		HttpSession session=request.getSession(false);  
-        if(session!=null){  
-        	String author = request.getParameter("author");
-        	String title = request.getParameter("title");
-        	String id = request.getParameter("id");
-
-		if (id == null || id.isEmpty()) {		
-			request.setAttribute("alert", bookServ.addBook(author, title, id));
-		} else {
-			int bookId = Integer.parseInt(request.getParameter(id));	
-			request.setAttribute("alert", bookServ.updateBook(bookId));
-		}
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/member/members.jsp");
-		request.setAttribute("books", bookServ.getBookList());
-		
-		rd.forward(request, response);
-		
+    /**
+     * Serial version uid.
+     */
+    private static final long serialVersionUID = 1L;
+    
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        BookService bookServ = new BookServiceImpl();
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            String author = request.getParameter("author");
+            String title = request.getParameter("title");
+            String id = request.getParameter("id");
+            
+            if (id == null || id.isEmpty()) {
+                request.setAttribute("alert", bookServ.addBook(author, title, id));
+            } else {
+                int bookId = Integer.parseInt(request.getParameter(id));
+                request.setAttribute("alert", bookServ.updateBook(bookId));
+            }
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/member/members.jsp");
+            request.setAttribute("books", bookServ.getBookList());
+            
+            rd.forward(request, response);
+            
         } else {
-
-			request.getRequestDispatcher("index.jsp").include(request, response);
-		}
-	}
+            
+            request.getRequestDispatcher("index.jsp").include(request, response);
+        }
+    }
 }

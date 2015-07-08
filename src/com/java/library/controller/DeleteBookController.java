@@ -13,38 +13,44 @@ import javax.servlet.http.HttpSession;
 import com.java.library.service.BookService;
 import com.java.library.service.BookServiceImpl;
 
-
 /**
- * @author Assistanz
- * Servlet implementation class DeleteBookController
+ * @author Assistanz Servlet implementation class DeleteBookController
  */
-@WebServlet( name="DeleteBookController", displayName="Delete Book Controller", urlPatterns = {"/deleteBook"})
+@WebServlet(name = "DeleteBookController", displayName = "Delete Book Controller", urlPatterns = { "/deleteBook" })
 public class DeleteBookController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-   
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BookService bookServ = new BookServiceImpl();
-		String id = request.getParameter("id");
-		HttpSession session=request.getSession(false);  
-        if(session!=null){  
-        	String forward = "/WEB-INF/views/member/books.jsp";
-        	int bookId = Integer.parseInt(request.getParameter(id));
-        	
-        	request.setAttribute("book", bookServ.deleteBook(bookId));
-        	RequestDispatcher rd = request.getRequestDispatcher(forward);
-    		rd.forward(request, response);
+    /**
+     * Serial version uid.
+     */
+    private static final long serialVersionUID = 1L;
+    
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        BookService bookServ = new BookServiceImpl();
+        String id = request.getParameter("id");
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            String forward = "/WEB-INF/views/member/books.jsp";
+            int bookId = Integer.parseInt(request.getParameter(id));
+            
+            request.setAttribute("book", bookServ.deleteBook(bookId));
+            RequestDispatcher rd = request.getRequestDispatcher(forward);
+            rd.forward(request, response);
         } else {
-    		request.getRequestDispatcher("index.jsp").include(request, response);
-    	}
-	}
-
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
+            request.getRequestDispatcher("index.jsp").include(request, response);
+        }
+    }
+    
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
 }

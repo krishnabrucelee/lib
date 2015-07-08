@@ -15,10 +15,10 @@
 <body>
 	<table>
 		<tr>
-			<td><a class="clickMe"	href="member">Member</a></td>
-			<td><a class="clickMe"	href="book">Book</a></td>
-			<td><a class="clickMe"	href="transaction">Transaction</a></td>
-			<td><a class="clickMe"	href="search">Search</a></td>
+			<td><a class="clickMe" href="member">Member</a></td>
+			<td><a class="clickMe" href="book">Book</a></td>
+			<td><a class="clickMe" href="transaction">Transaction</a></td>
+			<td><a class="clickMe" href="search">Search</a></td>
 			<td>
 				<form method="get" action="logout">
 					<button type="submit" value="logout">Logout</button>

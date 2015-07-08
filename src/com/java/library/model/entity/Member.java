@@ -1,86 +1,99 @@
 /**
- * 
+ *
  */
 package com.java.library.model.entity;
 
-
 /**
- * @author Assistanz
- *  Entity Class for Member
+ * @author Assistanz Entity Class for Member
  */
 public class Member {
 
-	private Integer id;
-	private String name;
-	private String email;
-	private Boolean isDeleted;
+    /**
+     * Member id.
+     */
+    private Integer id;
 
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
+    /**
+     * Member name.
+     */
+    private String name;
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    /**
+     * Member email.
+     */
+    private String email;
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Member Delete by id.
+     */
+    private Boolean isDeleted;
 
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
 
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	/**
-	 * @param email
-	 *            the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * @return the isDeleted
-	 */
-	public Boolean getIsDeleted() {
-		return isDeleted;
-	}
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * @param isDeleted
-	 *            the isDeleted to set
-	 */
-	public void setIsDeleted(Boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
 
-	/* 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Member [id=" + id + ", name=" + name + ", email=" + email + ", isDeleted=" + isDeleted + "]";
-	}
+    /**
+     * @param email
+     *            the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	
+    /**
+     * @return the isDeleted
+     */
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    /**
+     * @param isDeleted
+     *            the isDeleted to set
+     */
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    /*
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "Member [id=" + id + ", name=" + name + ", email=" + email + ", isDeleted=" + isDeleted + "]";
+    }
 
 }

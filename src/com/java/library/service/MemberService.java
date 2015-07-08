@@ -1,26 +1,46 @@
 /**
- * 
+ *
  */
 package com.java.library.service;
 
 /**
  * @author Assistanz
- *
  */
 public interface MemberService {
 
-	/*Get Members List*/
-	public String getMemberList();
+    /**
+     * Get all member details.
+     * @return member details
+     */
+     String getMemberList();
 
-	/*Update Member*/
-	public String updateMember(Integer memberId);
+     /**
+      * Update member by its id.
+      * @param memberId id
+      * @return updated details
+      */
+     String updateMember(Integer memberId);
 
-	/*Delete Member*/
-	public String deleteMember(Integer memberId);
+    /**
+     * Delete Member.
+     * @param memberId id
+     * @return delete member details.
+     */
+     String deleteMember(Integer memberId);
 
-	/*Add member*/
-	public String addMember(String name, String email, String id);
+    /**
+     * Add Member details in database.
+     * @param name member name.
+     * @param email member email
+     * @param id member id
+     * @return added member details
+     */
+     String addMember(String name, String email, String id);
 
-	/*Search member*/
-	public String SearchMember(Integer memberId);
+     /**
+      * Search member by its id.
+      * @param memberId id
+      * @return search details
+      */
+     String searchMember(Integer memberId);
 }
