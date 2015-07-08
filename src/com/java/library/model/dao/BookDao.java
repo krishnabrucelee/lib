@@ -14,6 +14,7 @@ import java.sql.Statement;
 import com.java.library.model.entity.Book;
 import com.java.library.utils.DbUtil;
 
+
 /**
  * @author Assistanz
  *
@@ -48,6 +49,11 @@ public class BookDao {
 		return books;
 	}
 
+	/**
+	 * Upadate or Edit book
+	 * @param bookId
+	 * @return
+	 */
 	public Integer updateBook(Integer bookId) {
 		Book book = new Book();
 		try {
@@ -66,6 +72,11 @@ public class BookDao {
 		return 1;
 	}
 
+	/**
+	 * Delete book 
+	 * @param bookId
+	 * @return
+	 */
 	public Integer deleteBook(Integer bookId) {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement("update books set isDeleted = ? where bookid=?");
@@ -81,7 +92,14 @@ public class BookDao {
 		return 1;
 	}
 
-	public Integer addBookBook(String author, String title, String id) {
+	/**
+	 * Add Book
+	 * @param author
+	 * @param title
+	 * @param id
+	 * @return
+	 */
+	public Integer addBook(String author, String title, String id) {
 		Book book = new Book();
 		try {
 			PreparedStatement preparedStatement = connection
@@ -98,5 +116,32 @@ public class BookDao {
 			return 2;
 		}
 		return 1;
+	}
+	
+	/**
+	 * Search Book
+	 * @param bookId
+	 * @return
+	 */
+	public List<Book> searchBookById(Integer bookId) {
+		List<Book> searchBookEntities = new ArrayList<Book>();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from books where bookid=?");
+			preparedStatement.setInt(1, bookId);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				Book searchBookEntity = new Book();
+				searchBookEntity.setId(rs.getInt("id"));
+				searchBookEntity.setTitle(rs.getString("title"));
+				searchBookEntity.setAuthor(rs.getString("author"));
+
+				searchBookEntities.add(searchBookEntity);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return searchBookEntities;
 	}
 }

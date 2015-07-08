@@ -59,7 +59,7 @@ public class BookServiceImpl implements BookService {
 	 */
 	public String addBook(String author, String title, String id) {
 		BookDao dao = new BookDao();
-		Integer add = dao.addBookBook(author, title, id);
+		Integer add = dao.addBook(author, title, id);
 		
 		if (add == 0) {
 			return "Book Already exits!!";
@@ -69,6 +69,15 @@ public class BookServiceImpl implements BookService {
 			return "Internal Error!!";
 		}
 
+	}
+
+	/**
+	 * Search Book by Id
+	 */
+	public String searchBook(Integer bookId) {
+		BookDao dao = new BookDao();
+		dao.searchBookById(bookId);
+		return null;
 	}
 
 }

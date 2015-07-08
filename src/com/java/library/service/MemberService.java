@@ -20,4 +20,7 @@ public interface MemberService {
 
 	/*Add member*/
 	public String addMember(String name, String email, String id);
+
+	/*Search member*/
+	public String SearchMember(Integer memberId);
 }

@@ -31,7 +31,7 @@ public class MemberServiceImpl implements MemberService {
 		if (update == 0) {
 			return "Member Already exits!!";
 		} else if (update == 1) {
-			return "Member Sucessfully Added!!";
+			return "Member Sucessfully updated!!";
 		} else {
 			return "Internal Error!!";
 		}
@@ -53,7 +53,9 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
-	@Override
+	/**
+	 * Add member by its id
+	 */
 	public String addMember(String name, String email, String id) {
 		MemberDao dao = new MemberDao();
 		Integer add = dao.addUser(name, email, id);
@@ -65,5 +67,15 @@ public class MemberServiceImpl implements MemberService {
 			return "Internal Error!!";
 		}
 
+	}
+
+	/**
+	 * Search Member by id
+	 */
+	public String SearchMember(Integer memberId) {
+		MemberDao dao = new MemberDao();
+		dao.SearchMemberById(memberId);
+		return null;
+		
 	}
 }

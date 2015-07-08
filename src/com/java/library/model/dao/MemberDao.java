@@ -98,6 +98,13 @@ public class MemberDao {
 		return memberId;
 	}
 
+	/**
+	 * Add Member
+	 * @param name
+	 * @param email
+	 * @param id
+	 * @return
+	 */
 	public Integer addUser(String name, String email, String id) {
 		Member member = new Member();
 		try {
@@ -123,6 +130,34 @@ public class MemberDao {
 		}
 		return 1;
 
+	}
+
+	/**
+	 * Search member
+	 * @param memberId
+	 * @return
+	 */
+	public List<Member> SearchMemberById(Integer memberId) {
+		List<Member> searchMemberEntities = new ArrayList<Member>();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from users where userid=?");
+			preparedStatement.setInt(1, memberId);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				Member searchEntity = new Member();
+				searchEntity.setId(rs.getInt("userId"));
+				searchEntity.setName(rs.getString("firstname"));	
+				searchEntity.setEmail(rs.getString("email"));
+				
+				searchMemberEntities.add(searchEntity);
+				
+			} 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return searchMemberEntities;
 	}
 
 }

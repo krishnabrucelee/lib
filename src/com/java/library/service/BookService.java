@@ -21,5 +21,8 @@ public interface BookService {
 	/*Add books*/
 	public String addBook(String author, String title, String id);
 
+	/*Search book*/
+	public String searchBook(Integer bookId);
+
 
 }

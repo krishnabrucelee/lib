@@ -7,24 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link type="text/css"
-	href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+<title>Add new Member</title>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
-<title>Add new Member</title>
-<style>
-.clickMe {
-	-moz-appearance: button;
-	-ms-appearance: button;
-	-o-appearance: button;
-	-webkit-appearance: button;
-	appearance: button;
-	text-decoration: none;
-	color: #000;
-	padding: 0.2em 0.4em;
-}
-��
-</style>
 </head>
 <body>
 	<table>
