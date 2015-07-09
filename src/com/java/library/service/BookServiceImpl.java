@@ -3,24 +3,26 @@
  */
 package com.java.library.service;
 
+import java.util.List;
+
 import com.java.library.model.dao.BookDao;
 import com.java.library.model.dao.BookDaoImpl;
+import com.java.library.model.entity.Book;
 
 /**
  * @author Assistanz
  */
 public class BookServiceImpl implements BookService {
-
+    
     /**
      * Get All books from database.
      */
     @Override
-    public String getBookList() {
+    public List<Book> getBookList() {
         BookDao dao = new BookDaoImpl();
-        dao.getAllBooks();
-        return null;
+        return dao.getAllBooks();
     }
-
+    
     /**
      * Update book from its id.
      */
@@ -28,7 +30,7 @@ public class BookServiceImpl implements BookService {
     public String updateBook(Integer bookId) {
         BookDao dao = new BookDaoImpl();
         Integer update = dao.updateBook(bookId);
-
+        
         if (update == 0) {
             return "Book Already exits!!";
         } else if (update == 1) {
@@ -36,9 +38,9 @@ public class BookServiceImpl implements BookService {
         } else {
             return "Internal Error!!";
         }
-
+        
     }
-
+    
     /**
      * Delete book from its id.
      */
@@ -46,7 +48,7 @@ public class BookServiceImpl implements BookService {
     public String deleteBook(Integer bookId) {
         BookDao dao = new BookDaoImpl();
         Integer delete = dao.deleteBook(bookId);
-
+        
         if (delete == 0) {
             return "Book Already exits!!";
         } else if (delete == 1) {
@@ -55,33 +57,25 @@ public class BookServiceImpl implements BookService {
             return "Internal Error!!";
         }
     }
-
+    
     /**
      * Add book to database.
      */
     @Override
-    public String addBook(String author, String title, String id) {
+    public String addBook(Book book) {
         BookDao dao = new BookDaoImpl();
-        Integer add = dao.addBook(author, title, id);
-
-        if (add == 0) {
-            return "Book Already exits!!";
-        } else if (add == 1) {
-            return "Book Sucessfully Added!!";
-        } else {
-            return "Internal Error!!";
-        }
-
+        return dao.addBook(book);
+        
     }
-
+    
     /**
      * Search Book by its id.
      */
     @Override
-    public String searchBook(Integer bookId) {
+    public List<Book> searchBook(Integer bookId) {
         BookDao dao = new BookDaoImpl();
-        dao.searchBookById(bookId);
-        return null;
+        return dao.searchBookById(bookId);
+        
     }
-
+    
 }

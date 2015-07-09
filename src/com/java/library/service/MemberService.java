@@ -3,44 +3,55 @@
  */
 package com.java.library.service;
 
+import java.util.List;
+
+import com.java.library.model.entity.Member;
+
 /**
  * @author Assistanz
  */
 public interface MemberService {
-
+    
     /**
      * Get all member details.
+     *
      * @return member details
      */
-     String getMemberList();
-
-     /**
-      * Update member by its id.
-      * @param memberId id
-      * @return updated details
-      */
-     String updateMember(Integer memberId);
-
+    List<Member> getMemberList();
+    
+    /**
+     * Update member by its id.
+     *
+     * @param memberId
+     *            id
+     * @return updated details
+     */
+    String updateMember(Integer memberId);
+    
     /**
      * Delete Member.
-     * @param memberId id
+     *
+     * @param memberId
+     *            id
      * @return delete member details.
      */
-     String deleteMember(Integer memberId);
-
+    String deleteMember(Integer memberId);
+    
     /**
-     * Add Member details in database.
-     * @param name member name.
-     * @param email member email
-     * @param id member id
-     * @return added member details
+     * Add member details.
+     * 
+     * @param member
+     *            member details
+     * @return member
      */
-     String addMember(String name, String email, String id);
-
-     /**
-      * Search member by its id.
-      * @param memberId id
-      * @return search details
-      */
-     String searchMember(Integer memberId);
+    String addMember(Member member);
+    
+    /**
+     * Search member by its id.
+     *
+     * @param memberId
+     *            id
+     * @return search details
+     */
+    String searchMember(Integer memberId);
 }

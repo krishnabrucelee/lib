@@ -3,45 +3,56 @@
  */
 package com.java.library.service;
 
+import java.util.List;
+
+import com.java.library.model.entity.Book;
+
 /**
  * @author Assistanz
  */
 public interface BookService {
-
+    
     /**
-     *  Get Book List.
-     *  @return list of books
+     * Get Book List.
+     *
+     * @return List of books
      */
-    String getBookList();
-
+    List<Book> getBookList();
+    
     /**
      * Update Book from book id.
-     * @param bookId id
+     *
+     * @param bookId
+     *            id
      * @return updated details.
      */
     String updateBook(Integer bookId);
-
+    
     /**
      * Delete book from book id.
-     * @param bookId id
+     *
+     * @param bookId
+     *            id
      * @return isDeleted 0/1
      */
     String deleteBook(Integer bookId);
-
+    
     /**
      * Add Book in database.
-     * @param author book author
-     * @param title book title
-     * @param id book id
+     *
+     * @param book
+     *            book details
      * @return Add Book Details.
      */
-    String addBook(String author, String title, String id);
-
+    String addBook(Book book);
+    
     /**
      * Search for Book.
-     * @param bookId id
+     *
+     * @param bookId
+     *            id
      * @return search book details.
      */
-    String searchBook(Integer bookId);
-
+    List<Book> searchBook(Integer bookId);
+    
 }

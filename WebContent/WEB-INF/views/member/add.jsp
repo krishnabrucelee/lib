@@ -26,13 +26,16 @@
 			</td>
 		</tr>
 	</table>
-	<form method="POST" action='member' name="frmAddUser">
+	<form method="POST" action='addMember' name="frmAddUser">
 		Member ID : <input type="text" readonly="readonly" name="id"
-			value="<c:out value="${member.id}" />" /> <br /> Name : <input
-			type="text" name="firstName"
-			value="<c:out value="${user.firstName}" />" /> <br /> Email : <input
-			type="text" name="email" value="<c:out value="${user.email}" />" />
-		<br /> <input type="submit" value="Submit" />
+			value="<c:out value="${member.id}" />" />
+		 <br />
+		Name : <input type="text" name="name" value="<c:out value="${member.name}" />" />
+		<br />
+		Email : <input type="text" name="email"
+			value="<c:out value="${member.email}" />" />
+			<br />
+			<input type="submit" value="Submit" />
 	</form>
 </body>
 </html>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.java.library.model.entity.Member;
 import com.java.library.service.MemberService;
 import com.java.library.service.MemberServiceImpl;
 
@@ -43,14 +44,15 @@ public class AddMemberController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         MemberService memberServ = new MemberServiceImpl();
+        Member member = new Member();
         HttpSession session = request.getSession(false);
         if (session != null) {
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
+            member.setName(request.getParameter("name"));
+            member.setEmail(request.getParameter("email"));
             String id = request.getParameter("id");
             
             if (id == null || id.isEmpty()) {
-                request.setAttribute("alert", memberServ.addMember(name, email, id));
+                request.setAttribute("alert", memberServ.addMember(member));
             } else {
                 int memberId = Integer.parseInt(request.getParameter(id));
                 request.setAttribute("alert", memberServ.updateMember(memberId));

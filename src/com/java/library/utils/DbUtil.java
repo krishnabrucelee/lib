@@ -12,23 +12,24 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * @author Assistanz
- * Database Utilities
+ * @author Assistanz Database Utilities
  */
 public final class DbUtil {
-
+    
     /**
      * Added constructor for DbUtil class.
      */
-    private DbUtil() { }
-
+    private DbUtil() {
+    }
+    
     /**
      * A connection (session) with a specific database.
      */
     private static Connection connection = null;
-
+    
     /**
      * Get connection to database.
+     * 
      * @return connection
      */
     public static Connection getConnection() {
@@ -56,6 +57,6 @@ public final class DbUtil {
             }
             return connection;
         }
-
+        
     }
 }

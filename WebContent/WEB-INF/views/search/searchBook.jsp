@@ -14,12 +14,10 @@
 <body>
 	<form method="POST" action='searchBook'>
 
-		Book ID : <input type="text" name="id"
-			value="<c:out value="${book.id}" />" /> <br /> Title : <input
-			type="text" name="title" value="<c:out value="${book.title}" />" />
-		<br /> Author : <input type="text" name="author"
-			value="<c:out value="${book.author}" />" /> <br /> <input
-			type="submit" value="Submit" />
+		Book ID : <input type="text" name="id" value="<c:out value="${book.id}" />" /> <br />
+		Title : <input type="text" name="title" value="<c:out value="${book.title}" />" /> <br />
+		Author : <input type="text" name="author" value="<c:out value="${book.author}" />" /> <br />
+		<input type="submit" value="Submit" />
 	</form>
 </body>
 </html>

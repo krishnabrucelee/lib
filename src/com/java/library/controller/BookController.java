@@ -33,9 +33,9 @@ public class BookController extends HttpServlet {
         BookService bookServ = new BookServiceImpl();
         HttpSession session = request.getSession(false);
         if (session != null) {
-            String forward = "/WEB-INF/views/member/books.jsp";
-            request.setAttribute("book", bookServ.getBookList());
+            String forward = "/WEB-INF/views/book/books.jsp";
             RequestDispatcher rd = request.getRequestDispatcher(forward);
+            request.setAttribute("books", bookServ.getBookList());
             rd.forward(request, response);
         } else {
             request.getRequestDispatcher("index.jsp").include(request, response);

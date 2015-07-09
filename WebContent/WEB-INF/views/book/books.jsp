@@ -27,6 +27,9 @@
 		</tr>
 	</table>
 
+<c:if test="${not empty alert}">
+		<c:out value="${alert}" />
+	</c:if>
 	<table border=1>
 		<thead>
 			<tr>

@@ -3,24 +3,27 @@
  */
 package com.java.library.service;
 
+import java.util.List;
+
 import com.java.library.model.dao.MemberDao;
 import com.java.library.model.dao.MemberDaoImpl;
+import com.java.library.model.entity.Member;
 
 /**
  * @author Assistanz
  */
 public class MemberServiceImpl implements MemberService {
-
+    
     /**
      * List all Member from id.
      */
     @Override
-    public String getMemberList() {
+    public List<Member> getMemberList() {
         MemberDao dao = new MemberDaoImpl();
-        dao.getAllMembers();
-        return null;
+        return dao.getAllMembers();
+        
     }
-
+    
     /**
      * Update member from its id.
      */
@@ -28,7 +31,7 @@ public class MemberServiceImpl implements MemberService {
     public String updateMember(Integer memberId) {
         MemberDao dao = new MemberDaoImpl();
         Integer update = dao.updateMember(memberId);
-
+        
         if (update == 0) {
             return "Member Already exits!!";
         } else if (update == 1) {
@@ -36,9 +39,9 @@ public class MemberServiceImpl implements MemberService {
         } else {
             return "Internal Error!!";
         }
-
+        
     }
-
+    
     /**
      * Delete member from its id.
      */
@@ -54,14 +57,14 @@ public class MemberServiceImpl implements MemberService {
             return "Internal Error!!";
         }
     }
-
+    
     /**
      * Add member by its id.
      */
     @Override
-    public String addMember(String name, String email, String id) {
+    public String addMember(Member member) {
         MemberDao dao = new MemberDaoImpl();
-        Integer add = dao.addUser(name, email, id);
+        Integer add = dao.addMember(member);
         if (add == 0) {
             return "Member Already exits!!";
         } else if (add == 1) {
@@ -69,9 +72,9 @@ public class MemberServiceImpl implements MemberService {
         } else {
             return "Internal Error!!";
         }
-
+        
     }
-
+    
     /**
      * Search Member by id.
      */
@@ -80,6 +83,6 @@ public class MemberServiceImpl implements MemberService {
         MemberDao dao = new MemberDaoImpl();
         dao.searchMemberById(memberId);
         return null;
-
+        
     }
 }

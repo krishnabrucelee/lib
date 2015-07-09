@@ -11,41 +11,48 @@ import com.java.library.model.entity.Member;
  * @author Assistanz
  */
 public interface MemberDao {
-
+    
     /**
-     *  Get Book List.
-     *  @return list of books
+     * Get Book List.
+     *
+     * @return list of books
      */
     List<Member> getAllMembers();
-
+    
     /**
      * Update member by its id.
-     * @param memberId id
+     *
+     * @param memberId
+     *            id
      * @return updated details
      */
     Integer updateMember(Integer memberId);
-
+    
     /**
      * Delete Member.
-     * @param memberId id
+     *
+     * @param memberId
+     *            id
      * @return delete member details.
      */
     Integer deleteMember(Integer memberId);
-
+    
     /**
-     * Add Member details in database.
-     * @param name member name.
-     * @param email member email
-     * @param id member id
-     * @return added member details
+     * Add member details.
+     * 
+     * @param member
+     *            member details
+     * @return member
      */
-    Integer addUser(String name, String email, String id);
-
+    Integer addMember(Member member);
+    
     /**
      * Search member by its id.
-     * @param memberId id
+     *
+     * @param memberId
+     *            id
      * @return search details
      */
     List<Member> searchMemberById(Integer memberId);
-
+    
 }

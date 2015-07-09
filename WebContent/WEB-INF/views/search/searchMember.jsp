@@ -15,11 +15,13 @@
 <body>
 	<form method="POST" action='searchMember' name="frmAddUser">
 		Member ID : <input type="text" name="id"
-			value="<c:out value="${member.id}" />" /> <br /> Name : <input
+			value="<c:out value="${member.id}" />" /> <br />
+	    Name : <input
 			type="text" name="name" value="<c:out value="${member.name}" />" />
-		<br /> Email : <input type="text" name="email"
-			value="<c:out value="${member.email}" />" /> <br /> <input
-			type="submit" value="Submit" />
+		<br />
+		Email : <input type="text" name="email"
+			value="<c:out value="${member.email}" />" /> <br />
+		<input type="submit" value="Submit" />
 	</form>
 </body>
 </html>

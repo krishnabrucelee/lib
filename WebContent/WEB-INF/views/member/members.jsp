@@ -42,7 +42,7 @@
 				<tr>
 					<td><c:out value="${member.id}" /></td>
 					<td><c:out value="${member.name}" /></td>
-					<td><c:out value="${user.email}" /></td>
+					<td><c:out value="${member.email}" /></td>
 					<td><a class="clickMe"
 						href="updateMember<c:out value="${member.id}"/>">Update</a></td>
 					<td><a class="clickMe"

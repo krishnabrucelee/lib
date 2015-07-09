@@ -16,19 +16,19 @@ import com.java.library.utils.DbUtil;
 
 /**
  * @author Assistanz
- *
  */
 public class MemberDaoImpl implements MemberDao {
-
+    
     /**
      * A connection (session) with a specific database.
      */
     private Connection connection = DbUtil.getConnection();
-
+    
     /**
      * Constant Index value.
      */
     public static final Integer ISDELETED = 3, ID = 4;
+    
     /**
      * List All members from Database.
      *
@@ -38,7 +38,7 @@ public class MemberDaoImpl implements MemberDao {
         List<Member> members = new ArrayList<Member>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from users where isDeleted <> 1 ");
+            ResultSet rs = statement.executeQuery("select * from users where isDeleted <> 1");
             while (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getInt("id"));
@@ -49,14 +49,15 @@ public class MemberDaoImpl implements MemberDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        
         return members;
     }
-
+    
     /**
      * Update Member by its id.
      *
-     * @param memberId id
+     * @param memberId
+     *            id
      * @return updated details
      */
     public Integer updateMember(Integer memberId) {
@@ -64,13 +65,13 @@ public class MemberDaoImpl implements MemberDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select * from users where email='" + member.getEmail() + "'");
-
+            
             if (rs.next()) {
-
+                
                 return 0;
             } else {
                 PreparedStatement preparedStatement = connection
-                        .prepareStatement("update users set firstname=?, email=?, isDeleted=?" + "where userid=?");
+                        .prepareStatement("update users set name=?, email=?, isDeleted=?" + "where userid=?");
                 // Parameters start with 1
                 preparedStatement.setString(1, member.getName());
                 preparedStatement.setString(2, member.getEmail());
@@ -84,11 +85,12 @@ public class MemberDaoImpl implements MemberDao {
         }
         return 1;
     }
-
+    
     /**
      * Delete member by its id.
      *
-     * @param memberId id
+     * @param memberId
+     *            id
      * @return memberId
      */
     public Integer deleteMember(Integer memberId) {
@@ -99,52 +101,51 @@ public class MemberDaoImpl implements MemberDao {
             preparedStatement.setBoolean(1, true);
             preparedStatement.setInt(2, memberId);
             preparedStatement.executeUpdate();
-
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return memberId;
     }
-
+    
     /**
      * Add Member to database.
      *
-     * @param name member name
-     * @param email member email
-     * @param id member id
+     * @param member
+     *            member details
      * @return 0/1
      */
-    public Integer addUser(String name, String email, String id) {
-        Member member = new Member();
+    public Integer addMember(Member member) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from users where email='" + email + "'");
-
+            ResultSet rs = statement.executeQuery("select * from users where email='" + member.getEmail() + "'");
+            
             if (rs.next()) {
                 return 0;
             } else {
-
+                
                 PreparedStatement preparedStatement = connection
-                        .prepareStatement("insert into users(firstname,email,isDeleted) values (?, ?, ? )");
+                        .prepareStatement("insert into users(name,email,isDeleted) values (?, ?, ? )");
                 // Parameters start with 1
                 preparedStatement.setString(1, member.getName());
                 preparedStatement.setString(2, member.getEmail());
                 preparedStatement.setBoolean(ISDELETED, false);
                 preparedStatement.executeUpdate();
             }
-
+            
         } catch (SQLException e) {
             e.printStackTrace();
             return 2;
         }
         return 1;
-
+        
     }
-
+    
     /**
      * Search member by its id.
      *
-     * @param memberId id
+     * @param memberId
+     *            id
      * @return list of members
      */
     public List<Member> searchMemberById(Integer memberId) {
@@ -153,20 +154,20 @@ public class MemberDaoImpl implements MemberDao {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from users where userid=?");
             preparedStatement.setInt(1, memberId);
             ResultSet rs = preparedStatement.executeQuery();
-
+            
             if (rs.next()) {
                 Member searchEntity = new Member();
-                searchEntity.setId(rs.getInt("userId"));
-                searchEntity.setName(rs.getString("firstname"));
+                searchEntity.setId(rs.getInt("id"));
+                searchEntity.setName(rs.getString("name"));
                 searchEntity.setEmail(rs.getString("email"));
-
+                
                 searchMemberEntities.add(searchEntity);
-
+                
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        
         return searchMemberEntities;
     }
 }
