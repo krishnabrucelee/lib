@@ -23,7 +23,7 @@ public class AddBookController extends HttpServlet {
      * Serial version uid.
      */
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      *      response)
@@ -34,7 +34,7 @@ public class AddBookController extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/book/add.jsp");
         rd.forward(request, response);
     }
-    
+
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
      *      response)
@@ -50,18 +50,18 @@ public class AddBookController extends HttpServlet {
             book.setAuthor(request.getParameter("author"));
             book.setTitle(request.getParameter("title"));
             String id = request.getParameter("id");
-            
+
             if (id == null || id.isEmpty()) {
                 request.setAttribute("book", bookServ.addBook(book));
             } else {
-                int bookId = Integer.parseInt(request.getParameter(id));
-                request.setAttribute("book", bookServ.updateBook(bookId));
+
+                request.setAttribute("book", bookServ.updateBook(book));
             }
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/book/books.jsp");
             request.setAttribute("books", bookServ.getBookList());
-            
+
             rd.forward(request, response);
-            
+
         } else {
             request.getRequestDispatcher("index.jsp").include(request, response);
         }

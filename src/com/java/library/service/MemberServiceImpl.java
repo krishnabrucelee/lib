@@ -13,7 +13,7 @@ import com.java.library.model.entity.Member;
  * @author Assistanz
  */
 public class MemberServiceImpl implements MemberService {
-    
+
     /**
      * List all Member from id.
      */
@@ -21,17 +21,17 @@ public class MemberServiceImpl implements MemberService {
     public List<Member> getMemberList() {
         MemberDao dao = new MemberDaoImpl();
         return dao.getAllMembers();
-        
+
     }
-    
+
     /**
      * Update member from its id.
      */
     @Override
-    public String updateMember(Integer memberId) {
+    public String updateMember(Member memberId) {
         MemberDao dao = new MemberDaoImpl();
         Integer update = dao.updateMember(memberId);
-        
+
         if (update == 0) {
             return "Member Already exits!!";
         } else if (update == 1) {
@@ -39,14 +39,14 @@ public class MemberServiceImpl implements MemberService {
         } else {
             return "Internal Error!!";
         }
-        
+
     }
-    
+
     /**
      * Delete member from its id.
      */
     @Override
-    public String deleteMember(Integer memberId) {
+    public String deleteMember(Member memberId) {
         MemberDao dao = new MemberDaoImpl();
         Integer delete = dao.deleteMember(memberId);
         if (delete == 0) {
@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
             return "Internal Error!!";
         }
     }
-    
+
     /**
      * Add member by its id.
      */
@@ -72,17 +72,18 @@ public class MemberServiceImpl implements MemberService {
         } else {
             return "Internal Error!!";
         }
-        
+
     }
-    
+
     /**
      * Search Member by id.
      */
     @Override
-    public String searchMember(Integer memberId) {
+    public List<Member> searchMember(Member memberId) {
         MemberDao dao = new MemberDaoImpl();
-        dao.searchMemberById(memberId);
-        return null;
-        
+        return dao.searchMemberById(memberId);
+
+
     }
+
 }

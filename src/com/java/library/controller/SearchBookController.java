@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.java.library.model.entity.Book;
 import com.java.library.service.BookService;
 import com.java.library.service.BookServiceImpl;
 
@@ -23,7 +24,7 @@ public class SearchBookController extends HttpServlet {
      * Serial version uid.
      */
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      *      response)
@@ -31,12 +32,12 @@ public class SearchBookController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
+
         String forward = "/WEB-INF/views/search/searchBook.jsp";
         RequestDispatcher view = request.getRequestDispatcher(forward);
         view.forward(request, response);
     }
-    
+
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
      *      response)
@@ -44,26 +45,41 @@ public class SearchBookController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BookService bookServ = new BookServiceImpl();
+        /*BookService bookServ = new BookServiceImpl();
         String id = request.getParameter("id");
         HttpSession session = request.getSession(false);
         if (session != null) {
             if (id == null || id.isEmpty()) {
                 request.setAttribute("alert", id);
-                
+
             } else {
                 int bookId = Integer.parseInt(request.getParameter("id"));
-                
+
                 request.setAttribute("books", bookServ.searchBook(bookId));
             }
             RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/search/searchResult.jsp");
             view.forward(request, response);
-            
+
         } else {
-            
+
             request.getRequestDispatcher("adminLogin.jsp").include(request, response);
         }
-        
+
+    }*/
+        BookService bookServ = new BookServiceImpl();
+        Book book = new Book();
+        String title = request.getParameter("title");
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            book.setTitle(title);
+
+            request.setAttribute("alert", bookServ.searchBook(title));
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/search/searchResult.jsp");
+            //request.setAttribute("books", bookServ.getBookList());
+            rd.forward(request, response);
+        } else {
+            request.getRequestDispatcher("index.jsp").include(request, response);
+        }
     }
-    
+
 }

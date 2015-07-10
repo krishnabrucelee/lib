@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.java.library.model.entity.Member;
 import com.java.library.service.MemberService;
 import com.java.library.service.MemberServiceImpl;
 
@@ -23,35 +24,29 @@ public class DeleteMemberController extends HttpServlet {
      * Serial version uid.
      */
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      *      response)
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         MemberService memberServ = new MemberServiceImpl();
-        String action = request.getParameter("id");
+        Member member = new Member();
+        String id = request.getParameter("id");
         HttpSession session = request.getSession(false);
         if (session != null) {
-            String forward = "/WEB-INF/views/member/members.jsp";
-            int memberId = Integer.parseInt(request.getParameter(action));
-            
-            request.setAttribute("members", memberServ.deleteMember(memberId));
-            RequestDispatcher rd = request.getRequestDispatcher(forward);
+            member.setId(Integer.parseInt(id));
+
+            request.setAttribute("alert", memberServ.deleteMember(member));
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/member/members.jsp");
+            request.setAttribute("members", memberServ.getMemberList());
+
             rd.forward(request, response);
+
         } else {
             request.getRequestDispatcher("index.jsp").include(request, response);
         }
-    }
-    
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
     }
 }

@@ -11,32 +11,32 @@ import com.java.library.model.entity.Book;
  * @author Assistanz
  */
 public interface BookService {
-    
+
     /**
      * Get Book List.
      *
      * @return List of books
      */
     List<Book> getBookList();
-    
+
     /**
      * Update Book from book id.
      *
-     * @param bookId
+     * @param book
      *            id
      * @return updated details.
      */
-    String updateBook(Integer bookId);
-    
+    String updateBook(Book book);
+
     /**
      * Delete book from book id.
      *
-     * @param bookId
+     * @param book
      *            id
      * @return isDeleted 0/1
      */
-    String deleteBook(Integer bookId);
-    
+    String deleteBook(Book book);
+
     /**
      * Add Book in database.
      *
@@ -45,14 +45,14 @@ public interface BookService {
      * @return Add Book Details.
      */
     String addBook(Book book);
-    
+
     /**
      * Search for Book.
      *
-     * @param bookId
+     * @param title
      *            id
      * @return search book details.
      */
-    List<Book> searchBook(Integer bookId);
-    
+    List<Book> searchBook(String title);
+
 }

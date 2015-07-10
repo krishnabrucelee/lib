@@ -11,47 +11,50 @@ import com.java.library.model.entity.Member;
  * @author Assistanz
  */
 public interface MemberService {
-    
+
     /**
      * Get all member details.
      *
      * @return member details
      */
     List<Member> getMemberList();
-    
+
     /**
      * Update member by its id.
      *
-     * @param memberId
+     * @param member
      *            id
      * @return updated details
      */
-    String updateMember(Integer memberId);
-    
+    String updateMember(Member member);
+
     /**
      * Delete Member.
      *
-     * @param memberId
+     * @param member
      *            id
      * @return delete member details.
      */
-    String deleteMember(Integer memberId);
-    
+    String deleteMember(Member member);
+
     /**
      * Add member details.
-     * 
+     *
      * @param member
      *            member details
      * @return member
      */
     String addMember(Member member);
-    
+
     /**
      * Search member by its id.
      *
-     * @param memberId
+     * @param member
      *            id
      * @return search details
      */
-    String searchMember(Integer memberId);
+    List<Member> searchMember(Member member);
+
+
+
 }

@@ -13,7 +13,7 @@ import com.java.library.model.entity.Book;
  * @author Assistanz
  */
 public class BookServiceImpl implements BookService {
-    
+
     /**
      * Get All books from database.
      */
@@ -22,15 +22,16 @@ public class BookServiceImpl implements BookService {
         BookDao dao = new BookDaoImpl();
         return dao.getAllBooks();
     }
-    
+
     /**
      * Update book from its id.
+     * @param bookId id.
+     * @return book
      */
-    @Override
-    public String updateBook(Integer bookId) {
+    public String updateBook(Book bookId) {
         BookDao dao = new BookDaoImpl();
         Integer update = dao.updateBook(bookId);
-        
+
         if (update == 0) {
             return "Book Already exits!!";
         } else if (update == 1) {
@@ -38,17 +39,17 @@ public class BookServiceImpl implements BookService {
         } else {
             return "Internal Error!!";
         }
-        
+
     }
-    
+
     /**
      * Delete book from its id.
      */
     @Override
-    public String deleteBook(Integer bookId) {
+    public String deleteBook(Book bookId) {
         BookDao dao = new BookDaoImpl();
         Integer delete = dao.deleteBook(bookId);
-        
+
         if (delete == 0) {
             return "Book Already exits!!";
         } else if (delete == 1) {
@@ -57,7 +58,7 @@ public class BookServiceImpl implements BookService {
             return "Internal Error!!";
         }
     }
-    
+
     /**
      * Add book to database.
      */
@@ -65,17 +66,17 @@ public class BookServiceImpl implements BookService {
     public String addBook(Book book) {
         BookDao dao = new BookDaoImpl();
         return dao.addBook(book);
-        
+
     }
-    
+
     /**
      * Search Book by its id.
      */
     @Override
-    public List<Book> searchBook(Integer bookId) {
+    public List<Book> searchBook(String title) {
         BookDao dao = new BookDaoImpl();
-        return dao.searchBookById(bookId);
-        
+        return dao.searchBookByTitle(title);
+
     }
-    
+
 }

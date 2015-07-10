@@ -11,14 +11,14 @@ import com.java.library.model.entity.Book;
  * @author Assistanz
  */
 public interface BookDao {
-    
+
     /**
      * Get all Book Details.
      *
      * @return list of Books.
      */
     List<Book> getAllBooks();
-    
+
     /**
      * update Book from its id.
      *
@@ -26,8 +26,8 @@ public interface BookDao {
      *            id
      * @return update book details.
      */
-    Integer updateBook(Integer bookId);
-    
+    Integer updateBook(Book bookId);
+
     /**
      * Delete book from its id.
      *
@@ -35,8 +35,8 @@ public interface BookDao {
      *            id
      * @return isDeleted 0/1
      */
-    Integer deleteBook(Integer bookId);
-    
+    Integer deleteBook(Book bookId);
+
     /**
      * Add Book to database.
      *
@@ -45,14 +45,23 @@ public interface BookDao {
      * @return add book details
      */
     String addBook(Book book);
-    
+
     /**
      * Search Book by its id.
      *
-     * @param bookId
+     * @param title book title
      *            id
      * @return search book details
      */
-    List<Book> searchBookById(Integer bookId);
-    
+    List<Book> searchBookByTitle(String title);
+
+    /**
+     * Get Book by its id.
+     * @param bookId id
+     * @return book details
+     */
+    Book getBookById(Integer bookId);
+
+
+
 }

@@ -11,14 +11,14 @@ import com.java.library.model.entity.Member;
  * @author Assistanz
  */
 public interface MemberDao {
-    
+
     /**
      * Get Book List.
      *
      * @return list of books
      */
     List<Member> getAllMembers();
-    
+
     /**
      * Update member by its id.
      *
@@ -26,8 +26,8 @@ public interface MemberDao {
      *            id
      * @return updated details
      */
-    Integer updateMember(Integer memberId);
-    
+    Integer updateMember(Member memberId);
+
     /**
      * Delete Member.
      *
@@ -35,17 +35,17 @@ public interface MemberDao {
      *            id
      * @return delete member details.
      */
-    Integer deleteMember(Integer memberId);
-    
+    Integer deleteMember(Member memberId);
+
     /**
      * Add member details.
-     * 
+     *
      * @param member
      *            member details
      * @return member
      */
     Integer addMember(Member member);
-    
+
     /**
      * Search member by its id.
      *
@@ -53,6 +53,15 @@ public interface MemberDao {
      *            id
      * @return search details
      */
-    List<Member> searchMemberById(Integer memberId);
-    
+    List<Member> searchMemberById(Member memberId);
+
+    /**
+     * Get Member from its id.
+     * @param memberId id
+     * @return member details
+     */
+    Member getMemberById(Integer memberId);
+
+
+
 }

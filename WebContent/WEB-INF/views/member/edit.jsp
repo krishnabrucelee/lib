@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Search</title>
+<title>Update Member</title>
 <link type="text/css" href="css/style.css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
@@ -26,16 +26,16 @@
 			</td>
 		</tr>
 	</table>
-
-	<table>
-		<tr>
-			<td><form  action="search" method="post">
-                         <input type="submit" value="Search Book">
-                             Title: <input type="text" value="${book.title}" name="title">
-                              Author:<input type="text" value="${book.author}" name="author">
-                </form></td>
-       </tr>
-	</table>
-
+	<form method="POST" action='updateMember' name="frmAddUser">
+		Member ID : <input type="text" readonly="readonly" name="id"
+			value="<c:out value="${member.id}" />" />
+		 <br />
+		Name : <input type="text" name="name" value="<c:out value="${member.name}" />" />
+		<br />
+		Email : <input type="text" name="email"
+			value="<c:out value="${member.email}" />" />
+			<br />
+			<input type="submit" value="Submit" />
+	</form>
 </body>
 </html>

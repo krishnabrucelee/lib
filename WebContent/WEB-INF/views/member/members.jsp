@@ -43,10 +43,19 @@
 					<td><c:out value="${member.id}" /></td>
 					<td><c:out value="${member.name}" /></td>
 					<td><c:out value="${member.email}" /></td>
-					<td><a class="clickMe"
-						href="updateMember<c:out value="${member.id}"/>">Update</a></td>
-					<td><a class="clickMe"
-						href="deleteMember<c:out value="${member.id}"/>">Delete</a></td>
+					<td><form  action="updateMember" method="get">
+                              <input type="submit" value="Update">
+                              <input type="hidden" value="${member.id}" name="id">
+                              <input type="hidden" value="${member.name}" name="name">
+                              <input type="hidden" value="${member.email}" name="email">
+                     </form>
+                     <td><form  action="deleteMember" method="post">
+                              <input type="submit" value="Delete">
+                              <input type="hidden" value="${member.id}" name="id">
+                              <input type="hidden" value="${member.name}" name="name">
+                              <input type="hidden" value="${member.email}" name="email">
+                     </form>
+                     </td>
 				</tr>
 			</c:forEach>
 		</tbody>

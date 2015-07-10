@@ -24,7 +24,7 @@ public class AddMemberController extends HttpServlet {
      * Serial version uid.
      */
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      *      response)
@@ -35,7 +35,7 @@ public class AddMemberController extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/member/add.jsp");
         rd.forward(request, response);
     }
-    
+
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
      *      response)
@@ -50,22 +50,22 @@ public class AddMemberController extends HttpServlet {
             member.setName(request.getParameter("name"));
             member.setEmail(request.getParameter("email"));
             String id = request.getParameter("id");
-            
+
             if (id == null || id.isEmpty()) {
                 request.setAttribute("alert", memberServ.addMember(member));
             } else {
-                int memberId = Integer.parseInt(request.getParameter(id));
-                request.setAttribute("alert", memberServ.updateMember(memberId));
+                member.setId(Integer.parseInt(id));
+                request.setAttribute("alert", memberServ.updateMember(member));
             }
-            
+
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/member/members.jsp");
             request.setAttribute("members", memberServ.getMemberList());
-            
+
             rd.forward(request, response);
-            
+
         } else {
             request.getRequestDispatcher("index.jsp").include(request, response);
         }
     }
-    
+
 }

@@ -18,17 +18,17 @@ import com.java.library.utils.DbUtil;
  * @author Assistanz
  */
 public class MemberDaoImpl implements MemberDao {
-    
+
     /**
      * A connection (session) with a specific database.
      */
     private Connection connection = DbUtil.getConnection();
-    
+
     /**
      * Constant Index value.
      */
     public static final Integer ISDELETED = 3, ID = 4;
-    
+
     /**
      * List All members from Database.
      *
@@ -49,29 +49,28 @@ public class MemberDaoImpl implements MemberDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return members;
     }
-    
+
     /**
      * Update Member by its id.
      *
-     * @param memberId
+     * @param member
      *            id
      * @return updated details
      */
-    public Integer updateMember(Integer memberId) {
-        Member member = new Member();
-        try {
+    public Integer updateMember(Member member) {
+          try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select * from users where email='" + member.getEmail() + "'");
-            
+
             if (rs.next()) {
-                
+
                 return 0;
             } else {
                 PreparedStatement preparedStatement = connection
-                        .prepareStatement("update users set name=?, email=?, isDeleted=?" + "where userid=?");
+                        .prepareStatement("update users set name=?, email=?, isDeleted=?  where id=?");
                 // Parameters start with 1
                 preparedStatement.setString(1, member.getName());
                 preparedStatement.setString(2, member.getEmail());
@@ -85,7 +84,7 @@ public class MemberDaoImpl implements MemberDao {
         }
         return 1;
     }
-    
+
     /**
      * Delete member by its id.
      *
@@ -93,21 +92,22 @@ public class MemberDaoImpl implements MemberDao {
      *            id
      * @return memberId
      */
-    public Integer deleteMember(Integer memberId) {
+    public Integer deleteMember(Member memberId) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update users set isDeleted = ? where userid = ? ");
+                    .prepareStatement("update users set isDeleted = ? where id = ? ");
             // Parameters start with 1
             preparedStatement.setBoolean(1, true);
-            preparedStatement.setInt(2, memberId);
+            preparedStatement.setInt(2, memberId.getId());
             preparedStatement.executeUpdate();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
+            return 2;
         }
-        return memberId;
+        return 1;
     }
-    
+
     /**
      * Add Member to database.
      *
@@ -119,11 +119,11 @@ public class MemberDaoImpl implements MemberDao {
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select * from users where email='" + member.getEmail() + "'");
-            
+
             if (rs.next()) {
                 return 0;
             } else {
-                
+
                 PreparedStatement preparedStatement = connection
                         .prepareStatement("insert into users(name,email,isDeleted) values (?, ?, ? )");
                 // Parameters start with 1
@@ -132,15 +132,15 @@ public class MemberDaoImpl implements MemberDao {
                 preparedStatement.setBoolean(ISDELETED, false);
                 preparedStatement.executeUpdate();
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
             return 2;
         }
         return 1;
-        
+
     }
-    
+
     /**
      * Search member by its id.
      *
@@ -149,25 +149,54 @@ public class MemberDaoImpl implements MemberDao {
      * @return list of members
      */
     public List<Member> searchMemberById(Integer memberId) {
-        List<Member> searchMemberEntities = new ArrayList<Member>();
+        List<Member> searchMember = new ArrayList<Member>();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from users where userid=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from users where id=?");
             preparedStatement.setInt(1, memberId);
             ResultSet rs = preparedStatement.executeQuery();
-            
+
             if (rs.next()) {
-                Member searchEntity = new Member();
-                searchEntity.setId(rs.getInt("id"));
-                searchEntity.setName(rs.getString("name"));
-                searchEntity.setEmail(rs.getString("email"));
-                
-                searchMemberEntities.add(searchEntity);
-                
+                Member search = new Member();
+                search.setId(rs.getInt("id"));
+                search.setName(rs.getString("name"));
+                search.setEmail(rs.getString("email"));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-        return searchMemberEntities;
+
+        return searchMember;
     }
+
+    /**
+     * Get member Details from it id.
+     * @param memberId id
+     * @return member details
+     */
+    public Member getMemberById(Integer memberId) {
+        Member member = new Member();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from users where id=?");
+            preparedStatement.setInt(1, memberId);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                member.setId(rs.getInt("id"));
+                member.setName(rs.getString("name"));
+                member.setEmail(rs.getString("email"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return member;
+    }
+
+    @Override
+    public List<Member> searchMemberById(Member memberId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
